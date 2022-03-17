@@ -151,6 +151,7 @@ class Hangman
           puts ""
           puts "Sorry... you have #{ @lives } lives left. Try again!"
           puts ""
+          print_teaser guess
           make_guess
         end
       else
