@@ -101,23 +101,35 @@ class Hangman
         puts "Enter a letter"
         guess = gets.chomp
         unless @guesses.include? guess
-          @guesses.append(guess)
+          if guess.length == 1
+            @guesses.append(guess)
+          end
         else @guesses.include? guess
+          show_hangman
           puts "Please choose a new character you haven't selected previously."
+          print_teaser guess
           make_guess
         end
 
         good_guess = @word.first.include? guess
 
-        if guess == "exit"
+        if guess == ""
+          show_hangman
+          puts "Guess can't be blank!"
+          puts ""
+          print_teaser guess
+          make_guess
+        elsif guess == "exit"
           puts ""
           puts "Thank you for playing!"
           exit
 
         #if guess is longer than 1 letter
         elsif guess.length > 1
-          puts "Only guess one letter at a time please!"
+          show_hangman
+          puts "Only guess one letter at a time, please!"
           puts ""
+          print_teaser guess
           make_guess
 
         elsif good_guess
@@ -160,7 +172,6 @@ class Hangman
         response = gets.chomp
         until response == "y" or response == "n"
           puts "Please enter y or n."
-          puts ""
           response = gets.chomp
         end
         if response == "y"
