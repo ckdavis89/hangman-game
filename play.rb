@@ -101,7 +101,7 @@ class Hangman
       puts "Enter a letter"
       guess = gets.chomp
       unless @guesses.include? guess
-        if guess.length == 1
+        if guess.length == 1 and guess != " "
           @guesses.append(guess)
         end
       else @guesses.include? guess
@@ -113,7 +113,7 @@ class Hangman
 
       good_guess = @word.first.include? guess
 
-      if guess == ""
+      if guess == "" or guess == " "
         show_hangman
         puts "Guess can't be blank!"
         puts ""
